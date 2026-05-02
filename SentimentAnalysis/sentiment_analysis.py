@@ -1,5 +1,6 @@
 """This module provides a function to analyze emotions using Watson NLP."""
 import requests
+import json
 
 def sentiment_analyzer(test_to_analyse):
     """Analyzes the given text and returns emotion scores."""
@@ -10,4 +11,7 @@ def sentiment_analyzer(test_to_analyse):
     header = {"grpc-metadata-mm-model-id": "sentiment_aggregated-bert-workflow_lang_multi_stock"}
     json_input = {"raw_document": {"text": test_to_analyse}}
     response = requests.post(url, json = json_input, headers = header, timeout=10)
-    return response.text
+    formatted_response = json.loads(response.text)
+    label = formatted_response['documentSentiment']['label']
+    score = formatted_response['documentSentiment']['score']
+    return ({"label": label, "score":score})
