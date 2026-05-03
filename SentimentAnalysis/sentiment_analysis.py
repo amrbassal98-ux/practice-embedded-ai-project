@@ -1,6 +1,6 @@
 """This module provides a function to analyze emotions using Watson NLP."""
-import requests
 import json
+import requests
 
 def sentiment_analyzer(text_to_analyse):
     """Analyzes the given text and returns emotion scores."""
