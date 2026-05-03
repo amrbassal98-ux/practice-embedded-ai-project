@@ -9,4 +9,11 @@ let RunSentimentAnalysis = ()=>{
     };
     xhttp.open("GET", "sentimentAnalyzer?textToAnalyze"+"="+textToAnalyze, true);
     xhttp.send();
-}
+};
+
+document.getElementById("textToAnalyze").addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        RunSentimentAnalysis();
+    }
+});
